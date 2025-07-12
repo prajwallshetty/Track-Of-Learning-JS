@@ -29,7 +29,7 @@ jobs:
         with:
           file-path: "public/auto-streak/data.txt"
           min-commits: 2
-          max-commits: 5
+          max-commits: 3
           commit-message: "Completed learning some topics of JS - ${{ steps.date.outputs.date }}"
           user-name: "prajwallshetty"
           user-email: "prajwal0shetty11@gmail.com"

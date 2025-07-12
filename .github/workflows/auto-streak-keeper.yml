@@ -26,7 +26,7 @@ jobs:
          file-path: "public/auto-streak/data.txt"
          min-commits: 2
          max-commits: 5
-         commit-message: "Daily streak maintenance"
+         commit-message: "Competed Learning Some topics OF JS"
          user-name: "bmiit145"
          user-email: "21bmiit145@gmail.com"
          github-token: ${{ secrets.GITHUB_TOKEN }}

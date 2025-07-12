@@ -1,33 +1,37 @@
 name: Maintain GitHub Streak
 
 on:
- schedule:
-   - cron: "0 0 * * *" # Runs daily at midnight
- workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # Runs daily at midnight UTC
+  workflow_dispatch:
 
 jobs:
- auto-streak:
-   runs-on: ubuntu-latest
-   permissions:
-     contents: write
+  auto-streak:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
-   steps:
-     - name: Checkout Repository
-       uses: actions/checkout@v3
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-     - name: Set up Node.js
-       uses: actions/setup-node@v3
-       with:
-         node-version: "20"
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
 
-     - name: Run Auto-Streak Keeper
-       uses: bmiit145/auto-streak-keeper@main
-       with:
-         file-path: "public/auto-streak/data.txt"
-         min-commits: 2
-         max-commits: 5
-         commit-message: "Competed Learning Some topics OF JS"
-         user-name: "bmiit145"
-         user-email: "21bmiit145@gmail.com"
-         github-token: ${{ secrets.GITHUB_TOKEN }}
-         branch-name: "main"
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+
+      - name: Run Auto-Streak Keeper
+        uses: bmiit145/auto-streak-keeper@main
+        with:
+          file-path: "public/auto-streak/data.txt"
+          min-commits: 2
+          max-commits: 5
+          commit-message: "Completed learning some topics of JS - ${{ steps.date.outputs.date }}"
+          user-name: "prajwallshetty"
+          user-email: "prajwal0shetty11@gmail.com"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch-name: "main"
